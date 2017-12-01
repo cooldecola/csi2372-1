@@ -98,7 +98,7 @@ void QwixxScoreSheet::setTotal(Color c, int val, int pos){
                 i++;
             }
             blue.insert(it, val);
-            it = nullptr;
+            it = blue.begin();
         }
         else if(c == 'g'){
             it = green.begin();
@@ -108,7 +108,7 @@ void QwixxScoreSheet::setTotal(Color c, int val, int pos){
                 i++;
             }
             green.insert(it, val);
-            it = nullptr;
+            it = green.begin();
         }
     }
 };

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void QwixxPlayer::inputBeforeRoll(DiceMaster *rollDice) {
+void QwixxPlayer::inputBeforeRoll(RollOfDice *rollDice) {
 
     std::string dash = "-"*36;
 
@@ -42,7 +42,7 @@ void QwixxPlayer::inputBeforeRoll(DiceMaster *rollDice) {
 
 };
 
-void QwixxPlayer::inputAfterRoll(DiceMaster *rollDice) {
+void QwixxPlayer::inputAfterRoll(RollOfDice *rollDice) {
 
     //input value and then print//
 

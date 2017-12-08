@@ -1,44 +1,45 @@
-//
-// Created by Natesh Kukreja on 2017-11-29.
-//
-
 #ifndef UNTITLED1_SCORESHEET_H
 #define UNTITLED1_SCORESHEET_H
 
 #include <iostream>
+#include "RollOfDice.h";
+#include "Colour.h"
 
 static const int g_height = 3;
 static const int g_width = 14;
 
+template <class T>
 class ScoreSheet {
 
-protected:
-
-    std::string player_Name;
-    int numFailed = 0;
-    int overallScore;
-    virtual bool score(int& x, RollOfDice rd, Color c, int pos = -1) = 0;
 
 private:
-    int score_Red[];
-    int score_Yellow[];
-    int score_Blue[];
-    int score_White[];
+    std::string player_Name;
 
-    int allColorsScore[g_height][g_width];
-
-    int scoreOverall = 0;
-    int num_Failed=0;
-
-
-
-    ScoreSheet(const std::string& name):player_Name(name){};
+    ostream& operator<<(ostream& os, T& sheet);
 
 public:
-    virtual int setTotal(...) = 0;
+    //constructor for the class
+    //same constructor for qwixx and qwinto
+    ScoreSheet(const std::string& name):player_Name(name){};
 
-    virtual bool calcTotal() = 0;
-    virtual bool operator!(...);
+    //when constructed
+    int overallScore = 0;
+
+    //returns the overall score of the player
+    //helper function
+    int getOverallScore(){return overallScore;};
+
+    //pure virtual methods to be implemented in
+    //QwintoScoreSheet QwixxScoreSheet
+
+    virtual int setTotal(...) = 0;
+    virtual int calcTotal() = 0;
+
+    //
+    virtual bool score(RollOfDice &rd, Colour c, int pos = -1) = 0;
+
+    //overriding not operator
+    virtual bool operator!() = 0;
 };
 
 

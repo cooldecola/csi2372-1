@@ -1,48 +1,47 @@
 #include "QwintoPlayer.h"
+#include "RollOfDice.h"
 
 using namespace std;
 
-void QwintoPlayer::inputBeforeRoll(DiceMaster *rollDice) {
+void QwintoPlayer::inputBeforeRoll(RollOfDice *rd) {
 
-    std::string dash = "-"*36;
 
-    cout<<"Player name:" << name<<cout;
-    cout<<dash<<endl;
-    std::string red ="";
-    std::string yellow ="";
-    for(int i:qwixxScoreSheet.getRedList()){
-        red = red+"| "+std::to_string(i);
-    }
-    cout<<"Red"<<red<<"U";
-    for(int i:qwixxScoreSheet.getYellowList()){
-        yellow = yellow+"| "+std::to_string(i);
-    }
-    cout<<"Yellow"<<yellow<<"U";
+    //create a flag for the while statement
+    //will stop while statement when set to false
+    bool flag = true;
 
-    std::list<int>::iterator it;
-    it = blue.begin();
-    std::string blue = "";
-    while(it!=11){
-        blue = blue+"| "+std::to_string(it);
-        it++;
-    }
-    cout<<"Blue"<<it<<"U";
+    //create a vector full of the user input
+    vector<string> userSelection;
 
-    it = green.begin();
-    std::string green = "";
-    while(it!=11){
-        green = green+"| "+std::to_string(it);
-        it++;
+    while(flag){
+        //clear the vector storing the user selection
+        userSelection.clear();
+
+        //print statement to inform user to input
+        std::cout<<"Which dice(s) would you like to use? \nPlease type 'r' for Red"
+                ", 'y' for Yellow and 'b' for blue.\n When finished, please enter 'ok'";
+
+        std::string userInput = "";
+
+        //keep taking input until the userInput is equal to "ok"
+        //code snippet same as lab 1
+        while(userInput !="ok"){
+            cin>>userInput;
+            userSelection.push_back(userInput);
+        }
+
+        
+
     }
-    cout<<"Green"<<it<<"U";
+
 
 };
 
-void QwintoPlayer::inputAfterRoll(DiceMaster *rollDice) {
+void QwintoPlayer::inputAfterRoll(RollOfDice *rollDice) {
 
     //input value and then print//
 
-    inputBeforeRoll(rollOfDice);
+    inputBeforeRoll(rollDice);
 
 
     if(this->isCurrent){

@@ -4,50 +4,23 @@
 
 #include "QwintoScoreSheet.h"
 
-int QwintoScoreSheet::setTotal(Color c, int val, int pos) {
-
-    if(calcTotal(c, val, pos)){
-        if(c.equals('r') && score_Red[pos] == 0){
-            score_Red[pos] = val;
-        }
-        if(c.equals('y') && score_Yellow[pos] == 0){
-            score_Yellow[pos] = val;
-        }
-        if(c.equals('b') && score_Blue[pos] == 0){
-            score_Blue[pos] = val;
-        }
-    }
+int QwintoScoreSheet::setTotal(Colour c, int val, int pos) {
 
     return 0;
 
 };
 
-bool QwintoScoreSheet::calcTotal(Color c, int val, int pos) {
-    if(c.equals('r')){
-        for(int i = 2; i<val-1; i++) {
-            for (int j = 3; j < pos; j++) {
-                if (!(score_Red[i] < score_Red[j]) && (score_Red[j] != 0 || score_Red[i] != 0))
-                    return false;
-            }
-        }
+bool QwintoScoreSheet::isGameOver(){
+
+    if(ScoreSheet::getFailed()){
+        return true;
     }
-    if(c.equals('y')) {
-        for (int i = 1; i < val - 1; i++) {
-            for (int j = 2; j < pos; j++) {
-                if (!(score_Yellow[i] < score_Yellow[j]) && (score_Yellow[j] != 0 || score_Yellow[i] != 0))
-                    return false;
-            }
-        }
-    }
-    if(c.equals('b')){
-        for(int i = 0; i<val-1; i++){
-            for(int j = 1; j<pos; j++){
-                if(!(score_Blue[i] < score_Blue[j])&&(score_Blue[j]!= 0||score_Blue[i] !=0))
-                    return false;
-            }
-        }
-    }
-    return true;
+    return false;
+
+};
+
+bool QwintoScoreSheet::calcTotal(Colour c, int val, int pos) {
+
 };
 
 void QwintoScoreSheet::getRedScore(){
@@ -183,3 +156,8 @@ int QwintoScoreSheet::getOverallScore() {
     return overallScore + num_Failed*5;
 
 };
+
+//
+// Created by Natesh Kukreja on 2017-11-29.
+//
+

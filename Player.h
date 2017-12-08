@@ -1,12 +1,21 @@
 #include <iostream>
+#include "RollOfDice.h";
+
 using namespace std;
 
 class Player {
 public:
-  bool isCurrent;
-  std::string name;
-  Player();
-  Player(bool isCurrent, std::string name);
-  //inputBeforeRoll(RollOfDice *rollDice)=0;
-  //inputAfterRoll(RollOfDice *rollDice)=0;
+    bool isCurrent = false;
+
+    std::string name="";
+    Player();
+
+    //added constructor and getter methods - Natesh
+    Player(std::string n);
+    virtual void inputBeforeRoll(RollOfDice *rollDice)=0;
+    virtual void inputAfterRoll(RollOfDice *rollDice)=0;
+    bool getIsCurrent(){return isCurrent;};
+    void setCurrent(){isCurrent = true;};
+    std::string getName(){return name;};
+
 };

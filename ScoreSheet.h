@@ -25,6 +25,8 @@ public:
     //when constructed
     int overallScore = 0;
 
+    static int numFail=0;
+
     //returns the overall score of the player
     //helper function
     int getOverallScore(){return overallScore;};
@@ -40,6 +42,11 @@ public:
 
     //overriding not operator
     virtual bool operator!() = 0;
+
+    virtual bool checkIfGameOver() = 0;
+
+    int getNumFail(){return numFail;};
+    void setNumFail(){numFail++;};
 };
 
 

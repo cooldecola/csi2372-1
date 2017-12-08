@@ -28,6 +28,9 @@ public:
         return overallScore;
     };
 
+    int getRedScore();
+    int getYellowScore();
+    int getBlueScore();
 
     //returns true if there are two rows in the that
     //are filled. If true, the game is over
@@ -41,6 +44,8 @@ public:
 
     //helper method
     int getOverallScore(){return overallScore;};
+
+    bool checkIfGameOver();
 
     //overriding the not operator
     //virtual function that was initilized in the parent class

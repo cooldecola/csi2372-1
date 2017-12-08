@@ -11,13 +11,15 @@
 using namespace std;
 
 template <Colour T> class QwintoRow{
-
 public:
+    RollOfDice& operator[] (const int index){
+        return scoreList[index];
+    };
 
-    QwintoRow(){
-        RollOfDice& operator[] (const int index);
-        //ostream& operator<<(operator& os);
-    }
+    RollOfDice scoreList[9];
+
+    ostream& operator<<(ostream &os);
+
 
 };
 

@@ -4,158 +4,167 @@
 
 #include "QwintoScoreSheet.h"
 
-int QwintoScoreSheet::setTotal(Colour c, int val, int pos) {
+ostream& QwintoScoreSheet::operator<<(ostream& os){
 
-    return 0;
+    std::string dash = "-";
 
-};
+    for(int i = 0; i <31;i++){
+        dash = dash+"-";
+    }
 
-bool QwintoScoreSheet::isGameOver(){
+    redScore<<os;
+    yellowScore<<os;
+    blueScore<<os;
 
-    if(ScoreSheet::getFailed()){
+    os<<"\n"<<dash;
+
+    int failedThrows = 0;
+
+    if(getNumFail()>0){
+        os<<"\n Failed Throws: ";
+        for(int i=0; i<getNumFail(); i++){
+            os<< " "<<i<<" ";
+        }
+    }
+
+    os<<"\n";
+
+    return os;
+
+}
+
+
+bool QwintoScoreSheet::checkIfGameOver() {
+
+    int counterR = 0;
+    int counterY = 0;
+    int counterB = 0;
+
+    for(int i= 0; i<9; i++){
+        if(redScore[i] == 0){
+            counterR++;
+        }
+    }
+    for(int i= 0; i<9; i++){
+        if(yellowScore[i] == 0){
+            counterY++;
+        }
+    }
+    for(int i= 0; i<9; i++){
+        if(blueScore[i] == 0){
+            counterB++;
+        }
+    }
+
+    if((numFail == 4)||((counterB==0 &&counterR==0)||(counterB==0 &&counterY==0)||(counterB==0 &&counterR==0))){
         return true;
     }
-    return false;
+    else{return false;}
 
 };
 
-bool QwintoScoreSheet::calcTotal(Colour c, int val, int pos) {
+int QwintoScoreSheet::getRedScore(){
 
-};
+    int zerosRed = 0;
 
-void QwintoScoreSheet::getRedScore(){
-    int zeros = 0;
-
-    for(int i = 2; i<12; i++){
-
-        if(i == 5){}
-        else if(score_Red[i] == 0){
-            zeros++;
+    for(int i = 0; i<9; i++){
+        if(redScore[i] ==0){
+            zerosRed++;
         }
     }
-    if(zeros == 0){
-        overallScore = overallScore+score_Red[11];
-        zeros = 0;
+
+    if(zerosRed == 0){
+        return redScore[8];
     }
     else{
-        overallScore = overallScore + (12-zeros);
-        zeros = 0;
+        return 9-zerosRed;
     }
-    if(score_Red[3]!=0&&score_Yellow[3]!=0&&score_Blue[3]!=0){
-        int max = score_Red[3];
-        if(score_Red[3]<score_Blue[3]){
-            max = score_Blue[3];
-            if(score_Blue[3]<score_Yellow[3]){
-                max = score_Yellow[3];
-            }
-        }
-        else if(score_Red[3]<score_Yellow[3]){
-            max = score_Yellow[3];
-        }
-        overallScore = max+overallScore;
-    }
-    if(score_Red[7]!=0&&score_Yellow[7]!=0&&score_Blue[7]!=0){
-        int max = score_Red[7];
-        if(score_Red[7]<score_Blue[7]){
-            max = score_Blue[7];
-            if(score_Blue[7]<score_Yellow[7]){
-                max = score_Yellow[7];
-            }
-        }
-        else if(score_Red[7]<score_Yellow[7]){
-            max = score_Yellow[7];
-        }
-        overallScore = max+overallScore;
-    }
+
 };
 
-void QwintoScoreSheet::getYellowScore(){
-    int zeros = 0;
-    for(int i = 1; i<11; i++){
-        if(i == 6){}
-        else if(score_Yellow[i] == 0){
-            zeros++;
+int QwintoScoreSheet::getYellowScore(){
+
+    int zerosYellow = 0;
+
+    for(int i = 0; i<9; i++){
+        if(yellowScore[i] ==0){
+            zerosYellow++;
         }
     }
-    if(zeros == 0){
-        overallScore = overallScore+score_Yellow[10];
-        zeros = 0;
+
+    if(zerosYellow == 0){
+        return yellowScore[8];
     }
     else{
-        overallScore = overallScore + (12-zeros);
-        zeros = 0;
+        return 9-zerosYellow;
     }
-    if(score_Red[8]!=0&&score_Yellow[8]!=0&&score_Blue[8]!=0){
-        int max = score_Red[8];
-        if(score_Red[8]<score_Blue[8]){
-            max = score_Blue[8];
-            if(score_Blue[8]<score_Yellow[8]){
-                max = score_Yellow[8];
-            }
-        }
-        else if(score_Red[8]<score_Yellow[8]){
-            max = score_Yellow[8];
-        }
-        overallScore = max+overallScore;
-    }
+
 };
 
-void QwintoScoreSheet::getBlueScore(){
-    int zeros = 0;
-    for(int i = 0; i<10; i++){
-        if(i == 4){}
-        else if(score_Blue[i] == 0) {
-            zeros++;
+int QwintoScoreSheet::getBlueScore(){
+    int zerosBlue = 0;
+
+    for(int i = 0; i<9; i++){
+        if(blueScore[i] ==0){
+            zerosBlue++;
         }
     }
-    if(zeros == 0){
-        overallScore = overallScore+score_Blue[9];
-        zeros = 0;
+
+    if(zerosBlue == 0){
+        return blueScore[8];
     }
     else{
-        overallScore = overallScore + (12-zeros);
-        zeros = 0;
-    }
-
-    if(score_Red[2]!=0&&score_Yellow[2]!=0&&score_Blue[2]!=0){
-        int max = score_Red[2];
-        if(score_Red[2]<score_Blue[2]){
-            max = score_Blue[2];
-            if(score_Blue[2]<score_Yellow[2]){
-                max = score_Yellow[2];
-            }
-        }
-        else if(score_Red[2]<score_Yellow[2]){
-            max = score_Yellow[2];
-        }
-        overallScore = max+overallScore;
-    }
-
-    if(score_Red[9]!=0&&score_Yellow[9]!=0&&score_Blue[9]!=0){
-        int max = score_Red[9];
-        if(score_Red[9]<score_Blue[9]){
-            max = score_Blue[9];
-            if(score_Blue[9]<score_Yellow[9]){
-                max = score_Yellow[9];
-            }
-        }
-        else if(score_Red[9]<score_Yellow[9]){
-            max = score_Yellow[9];
-        }
-        overallScore = max+overallScore;
+        return 9-zerosBlue;
     }
 
 };
+
 
 int QwintoScoreSheet::getOverallScore() {
 
-    getRedScore();
-    getYellowScore();
-    getBlueScore();
-
-    return overallScore + num_Failed*5;
+    return getRedScore()+getYellowScore()+getBlueScore() + getNumFail()*5;
 
 };
+
+bool QwintoScoreSheet::score(RollOfDice &rd, Colour c, int pos) {
+
+    RollOfDice* rollOfDice;
+
+    switch(c){
+        case Colour::RED:
+            rollOfDice = redScore.scoreList;
+            break;
+        case Colour::YELLOW:
+            rollOfDice = yellowScore.scoreList;
+            break;
+        case Colour::BLUE:
+            rollOfDice = blueScore.scoreList;
+            break;
+    }
+
+    if(int(rollOfDice[pos])!=0){
+        std::cout<<"You gave an incorrect position value\n"
+                "Error: already a value in that position "<<pos<<"\n";
+        return false;
+    }
+
+    else if(pos<0 ||pos>8){
+        std::cout<<"You gave an incorrect position value\n"
+                "Error: the position you entered is greater than"
+                "or less than the available positions"<<pos<<"\n";
+        return false;
+    }
+
+    for(int i = 0; i<9; i++){
+        if((int(rollOfDice[i]))<=int(rollOfDice)){
+            
+        }
+    }
+
+    rollOfDice[pos] = rd;
+    return true;
+
+}
 
 //
 // Created by Natesh Kukreja on 2017-11-29.

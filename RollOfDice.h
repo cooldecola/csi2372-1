@@ -39,15 +39,19 @@ struct Dice{
     // number of faces that are on the dice, min/max is 6
     int faces;
 
+
+    //initializer with the color of the object
     Dice(Colour colour);
 
+    //function to be implemented
     int roll();
 
 
 };
 
 struct RandomDice{
-    static int value=0;
+    //static instance variable
+    static int value=1;
 };
 
 

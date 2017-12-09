@@ -46,6 +46,32 @@ int RandomDice(){
 
 ostream& operator<<(ostream& os, RollOfDice& rollOfDice){
 
+
+    //OK LETS BREAK THIS DOWN
+
+    //WE FIRST GONNA CHECK IF THE COLOUR OF THE DICE AT THE INDEX
+    //i IS EQUAL TO RED, IF SO, PRINT ALL THE FACES RED HAS ASSOCIATED
+    //TO IT AND ITS USER
+
+    //IF NOT THEN PRINT THE OTHER COLOURS!!!!
+
+    //OK GOOD LETS DO THIS
+    for(int i =0;i<diceList.size();i++){
+        if(rollOfDice.diceList[i].colourOfDice == Colour::RED){
+            os<<"Red Dices: "<<rollOfDice.diceList[i].faces<<endl;
+        }
+        if(rollOfDice.diceList[i].colourOfDice == Colour::YELLOW){
+            os<<"Yellow Dices: "<<rollOfDice.diceList[i].faces<<endl;
+        }
+        if(rollOfDice.diceList[i].colourOfDice == Colour::BLUE){
+            os<<"Blue Dices: "<<rollOfDice.diceList[i].faces<<endl;
+        }
+
+    }
+
+    return os;
+
+
 }
 
 //conversion opertor that needs to be overwritten

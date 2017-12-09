@@ -15,6 +15,8 @@ inline void makeChoice(T& choice, const std::string& prompt){
     std::cin >> choice;
 }
 
+//WINNER method that finds the winner of the game
+//esskeetit !!
 void whoIsTheWinnerWinnerChickenDinner(vector<QwintoPlayer> listOfPlayers){
 
     string leGoat = "";
@@ -36,6 +38,7 @@ void whoIsTheWinnerWinnerChickenDinner(vector<QwintoPlayer> listOfPlayers){
         //simple switcheroo
         if(leGoatScore < score){
 
+            //the GOAT becomes the [i] position of list of players
             leGoat = listOfPlayers[i].getName();
 
             leGoatScore = score;
@@ -52,6 +55,11 @@ void whoIsTheWinnerWinnerChickenDinner(vector<QwintoPlayer> listOfPlayers){
 
 }
 
+
+//the game method for qwinto
+//the game is played here after finding out how many
+//people are playing the game and what game is being
+//played in the main method
 void Qwinto(int numberOfPlayers){
 
     //create a list of QwintoPlayers that will be participating
@@ -67,7 +75,7 @@ void Qwinto(int numberOfPlayers){
         listOfPlayers.push_back(QwintoPlayer(player_Name, QwintoScoreSheet(player_Name)));
     }
 
-    //now we play the game
+    //now we play the game ----- esskeetit
 
     //bool flag to check if the game is over
     bool isGameOver = false;
@@ -164,6 +172,9 @@ int main() {
     std::cout << std::endl;
     std::cout << "You picked version " << userChoice_version << "!\n" << std::endl;
 
+    //basically if the value is 1 then qwinto is being played
+    //if 0 then qwixx
+    //int 0 correlates to False and 1 to True in C++
     bool qwinto;
     bool qwixx;
 
@@ -172,11 +183,14 @@ int main() {
         qwixx = false;
         qwinto = true;
     }
+
     else if(userChoice_version == 1){
         qwixx = true;
         qwinto = false;
     }
 
+    //get the input from the user to see how many people want to play
+    //this game!!!
     std::string numOfPlayers_Prompt = "Enter the number of players playing (1-3): ";
     makeChoice(userChoice_players, numOfPlayers_Prompt);
     while (userChoice_players < 1 || userChoice_players > 3){

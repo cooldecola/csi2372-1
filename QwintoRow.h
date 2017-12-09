@@ -12,10 +12,17 @@ using namespace std;
 
 template <Colour T> class QwintoRow{
 public:
+
+    //overriding operator and returns the
+    //index at the score list
     RollOfDice& operator[] (const int index){
         return scoreList[index];
     };
 
+
+    //create a row of size 9 containing
+    //RollOfDice
+    //New row created for each object that is sent through
     RollOfDice scoreList[9];
 
     ostream& operator<<(ostream &os);

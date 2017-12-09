@@ -25,6 +25,9 @@ template<Colour T> ostream& QwintoRow<T>::operator<<(ostream &os){
         dash = dash+"-";
     }
 
+
+    //if the value of T is red, go through this statement
+    //to print out the scoresheet
     if(T==Colour::RED){
         std::cout<<dash<<"\n"<<"RED";
 

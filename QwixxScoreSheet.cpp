@@ -42,7 +42,7 @@ void QwixxScoreSheet::getGreenScore(){
     }
 }
 
-bool QwixxScoreSheet::calcTotal(Color c, int val, int pos) {
+bool QwixxScoreSheet::calcTotal(Colour c, int val, int pos) {
     if(c == 'r'){
         if(val<redMax){
             return false;
@@ -81,9 +81,9 @@ bool QwixxScoreSheet::calcTotal(Color c, int val, int pos) {
     }
 };
 
-void QwixxScoreSheet::setTotal(Color c, int val, int pos){
+void QwixxScoreSheet::setTotal(Colour c, int val, int pos){
 
-    if(calcTotal(Color c, int val, int pos)){
+    if(calcTotal(Colour c, int val, int pos)){
         if(c == 'r'){
             red.at(pos) = val;
         }

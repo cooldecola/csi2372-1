@@ -81,7 +81,7 @@ void QwintoPlayer::inputAfterRoll(RollOfDice *rollDice) {
 
     vector<Dice>::iterator diceIter;
 
-    for(diceIter = rollDice->diceList.begin(); i!=rollDice->diceList.end(); diceIter++){
+    for(diceIter = rollDice->diceList.begin(); diceIter!=rollDice->diceList.end(); diceIter++){
         Dice d = *diceIter;
 
         switch (d.colourOfDice){

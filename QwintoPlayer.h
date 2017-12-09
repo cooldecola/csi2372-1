@@ -14,7 +14,6 @@ class QwintoPlayer: public Player {
 public:
 
     QwintoScoreSheet qwintoScoreSheet;
-
     QwintoPlayer(std::string n, QwintoScoreSheet qx):Player(n), qwintoScoreSheet(qx){};
     void inputBeforeRoll(RollOfDice *rollDice);
     void inputAfterRoll(RollOfDice *rollDice);

@@ -4,6 +4,7 @@
 
 #ifndef UNTITLED1_QWINTOPLAYER_H
 #define UNTITLED1_QWINTOPLAYER_H
+#define TEST_PLAYER
 
 #include "Player.h";
 #include "RollOfDice.h";
@@ -27,6 +28,19 @@ public:
 
 
 };
+
+#ifndef TEST_PLAYER
+
+int main(){
+    QwintoScoreSheet qx = QwintoScoreSheet("Natesh");
+    QwintoPlayer nate = QwintoPlayer("Natesh", qx);
+    std::cout<<nate.getName()<<std::endl;
+    std::cout<<nate.getIsCurrent()<<std::endl;
+    nate.setCurrent();
+    std::cout<<nate.getIsCurrent()<<std::endl;
+
+
+}
 
 #endif //UNTITLED1_QWINTOPLAYER_H
 

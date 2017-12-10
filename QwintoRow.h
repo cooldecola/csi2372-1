@@ -3,10 +3,12 @@
 //
 
 #ifndef CPP_PROJECT_QWINTOROW_H
+#define TEST_ROW
 #define CPP_PROJECT_QWINTOROW_H
 #include <iostream>
 #include "Colour.h"
 #include "RollOfDice.h"
+
 
 using namespace std;
 
@@ -30,6 +32,16 @@ public:
 
 };
 
+int main(){
 
+    RollOfDice rd;
+    rd.roll();
+    QwintoRow<Colour::RED> red;
+    red[2] = rd;
+
+}
+
+
+#ifndef TEST_ROW
 
 #endif //CPP_PROJECT_QWINTOROW_H

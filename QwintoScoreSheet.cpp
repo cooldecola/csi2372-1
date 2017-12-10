@@ -262,4 +262,3 @@ bool QwintoScoreSheet::score(RollOfDice &rd, Colour c, int pos) {
 //
 // Created by Natesh Kukreja on 2017-11-29.
 //
-

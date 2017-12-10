@@ -4,11 +4,9 @@
 
 #ifndef CPP_PROJECT_ROLLOFDICE_H
 #define CPP_PROJECT_ROLLOFDICE_H
-#define TEST_DICE
 
 #include "vector";
 #include "Dice.h";
-
 
 using namespace std;
 
@@ -51,20 +49,10 @@ struct Dice{
 
 };
 
-
-
 struct RandomDice{
     //static instance variable
     static int value=1;
 };
-
-
-#ifndef  TEST_DICE
-int main (){
-    Dice d1{1, Colour::RED};
-    std::cout<<d1<<std::endl;
-    d1.roll();
-}
 
 
 #endif //CPP_PROJECT_ROLLOFDICE_H

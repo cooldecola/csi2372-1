@@ -103,4 +103,3 @@ int Dice::roll(){
     return faces;
 
 }
-

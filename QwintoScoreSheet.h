@@ -28,9 +28,6 @@ public:
         return overallScore;
     };
 
-
-    //helper methods that return the score each individual
-    //row
     int getRedScore();
     int getYellowScore();
     int getBlueScore();
@@ -48,8 +45,6 @@ public:
     //helper method
     int getOverallScore(){return overallScore;};
 
-    //helper method that returns whether the game is
-    //over or not
     bool checkIfGameOver();
 
     //overriding the not operator

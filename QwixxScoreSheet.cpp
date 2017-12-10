@@ -1,114 +1,126 @@
-//
-// Created by Natesh Kukreja on 2017-11-30.
-//
+bool QwixxScoreSheet::score(RollOfDice &rd, Colour colour_ss, int pos){
+	std::string colour_ss;
+	RollOfDice* row_ss;
+	int position = 0;
 
-#include "QwixxScoreSheet.h"
+	if (c == red){
+		position = int(rd) - 2;
+		colour_ss = "red";
+		row_ss = redRow.values;
+	} else if (c == yellow){
+		position = int(rd) - 2;
+		colour_ss = "yellow";
+		row_ss = yellowRow.values;
+	} else if (c = green){
+		position = 12 - int(rd)
+		colour_ss = "green";
+		row_ss = greenRow.values;
+	} else{
+		position = 12 - int(rd);
+		colour_ss = "blue";
+		row_ss = blueRow.values;
+	}
 
-int QwixxScoreSheet::getOverallScore() {
+	//To test if the proper game_dices have been selected
+	if ((rd.game_dices[0].colourOfDice == c) || (rd.game_dices[1].colourOfDice == c)){
+		if (((rd.game_dices[0]) == c) && (rd.game_dices[1] == Colour::white) || ((rd.game_dices[1]) == c) && (rd.game_dices[0] == Colour::white)){
+			return true;
+		}
+		std::cout << "The selection of Dices isn't correct";
+		return false;
+	}
 
-    getBlueScore();
-    getRedScore();
-    getYellowScore();
-    getGreenScore();
-    return overallScore-(num_Failed*5);
-};
+	// This fucntion runs through the entire row and checks up till an X is marked off by user, if it does encounter one, returns false
+	while (i < 11){
+		if (row[i].game_dices.size() != 0){
+			if (position < i){
+				std::cout << "You cannot put an X to the left of any X";
+				i++;
+			}
+		}
+		return false;
+	}
 
-void QwixxScoreSheet::getBlueScore(){
-    for (int i : blue){
-        if(i!=0){
-            overallScore+overallScore+(i+1);
-        }
-    }
+
+	// To check if the row is unlocked.
+	if(int(row[11]) != 0){
+		std::cout << "This is a locked row" << endl;
+		return false;
+	}
+
+	// Passed dice is to be scored in a scored cell
+	if(int(row[position]) != 0){
+		cout << "This position is taken" << endl;
+		return false;
+	}
+
+
+// The overloaded insertion operator
+
+ostream& QwixxScoreSheet::operator<<(ostream& os){
+
+	os << redRow;
+	os << yellowRow;
+	os << greenRow;
+	os << blueRow;
+
+	os << "\t----------------------------------------------------------- ";
+
+//Displaying the number of failed turns
+	if (numFail > 0)
+		os << "Penalty Numbers: ";
+		for(int i = 0; i < numFail.size(); ++i){
+			os << int(numFail[i]) << endl;
+		}
+	}
+	return os;
 }
-void QwixxScoreSheet::getRedScore(){
-    for (int i : red){
-        if(i!=0){
-            overallScore+overallScore+(i+1);
-        }
-    }
-}
-void QwixxScoreSheet::getYellowScore(){
-    for (int i : yellow){
-        if(i!=0){
-            overallScore+overallScore+(i+1);
-        }
-    }
-}
-void QwixxScoreSheet::getGreenScore(){
-    for (int i : green){
-        if(i!=0){
-            overallScore+overallScore+(i+1);
-        }
-    }
+
+
+int QwixxScoreSheet::calcTotal(){
+	int total = 0;
+
+	// Counts the Red score
+	for(int i = 0; i < 12; i++){
+		if(int(redRow[i]) != 0){
+			total += redRow[i];
+		}
+	}
+
+	//Counts the Yellow score
+	for(int i = 0; i < 12; ++i){
+		if(int(yellowRow[i]) != 0){
+			total += yellowRow[i];
+		}
+	}
+
+	//Counts the Green score
+	for(int i=0; i<12; ++i){
+		if(int(greenRow[i]) != 0){
+			total += greenRow[i];
+		}
+	}
+
+	//Counts the blue score
+	for(int i=0; i<12; ++i){
+		if(int(blueRow[i]) != 0){
+			total += blueRow[i];
+		}
+	}
+
+	// Failed attempts
+	total -= (numFail.size()*5);
+
+	return total;
 }
 
-bool QwixxScoreSheet::calcTotal(Colour c, int val, int pos) {
-    if(c == 'r'){
-        if(val<redMax){
-            return false;
-        }
-        else if(redMax == 0 || val>redMax){
-            redMax = val;
-            return true;
-        }
-    }
-    else if(c == 'b'){
-        if(val<blueMax){
-            return false;
-        }
-        else if(blueMax == 0 || val>blueMax){
-            blueMax = val;
-            return true;
-        }
-    }
-    else if(c == 'y'){
-        if(val<yellowMax){
-            return false;
-        }
-        else if(yellowMax == 0 || val>yellowMax){
-            yellowMax = val;
-            return true;
-        }
-    }
-    else if(c == 'g'){
-        if(val<greenMax){
-            return false;
-        }
-        else if(greenMax == 0 || val>greenMax){
-            greenMax = val;
-            return true;
-        }
-    }
-};
 
-void QwixxScoreSheet::setTotal(Colour c, int val, int pos){
+int QwixxScoreSheet::setTotal(){
 
-    if(calcTotal(Colour c, int val, int pos)){
-        if(c == 'r'){
-            red.at(pos) = val;
-        }
-        else if(c == 'y'){
-            yellow.at(pos) = val;
-        }
-        else if(c == 'b'){
-            it = blue.begin();
-            int i =0;
-            while(i!=pos){
-                it++;
-                i++;
-            }
-            blue.insert(it, val);
-            it = blue.begin();
-        }
-        else if(c == 'g'){
-            it = green.begin();
-            int i =0;
-            while(i!=pos){
-                it++;
-                i++;
-            }
-            green.insert(it, val);
-            it = green.begin();
-        }
-    }
-};
+	int total = calcTotal();
+	this->totalScore = total;
+	return total;
+}
+// WAS NOT ABLE TO FINISH THE CLASS
+
+}
